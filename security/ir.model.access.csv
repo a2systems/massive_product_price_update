@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_prices_file,product.prices.file,model_product_prices_file,base.group_user,1,1,1,1
+access_product_prices_file_line,product.prices.file.line,model_product_prices_file_line,base.group_user,1,1,1,1

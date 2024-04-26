@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_product_prices_file_form" model="ir.ui.view">
+        <field name="name">view.product.prices.file.form</field>
+        <field name="model">product.prices.file</field>
+	<field name="arch" type="xml">
+		<form>
+			<header>
+				<button name="btn_process_file" type="object" string="Procesar"
+					states="draft"/>
+				<field name="state" widget="statusbar" />
+			</header>
+			<sheet>
+				<group>
+					<field name="name" attrs="{'readonly': [('state','=','done')]}"/>
+					<field name="date" attrs="{'readonly': [('state','=','done')]}"/>
+					<field name="file" attrs="{'readonly': [('state','=','done')]}"/>
+				</group>
+				<notebook>
+					<page string="Actualizaciones" >
+						<br />
+						<group>
+							<field name="line_ids" readonly="1">
+								<tree>
+									<field name="product_tmpl_id" />
+									<field name="old_price" />
+									<field name="new_price" />
+								</tree>
+							</field>
+						</group>
+					</page>
+				</notebook>
+			</sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_product_prices_file_tree" model="ir.ui.view">
+        <field name="name">view.product.prices.file.tree</field>
+        <field name="model">product.prices.file</field>
+        <field name="arch" type="xml">
+            <tree string="Actualización de precios" >
+                <field name="name" readonly="1"/>
+                <field name="date" readonly="1"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_product_prices_file">
+        <field name="name">Archivos de Precios</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.prices.file</field>
+	<field name="view_mode">tree,form</field>
+	<field name="view_id" ref="view_product_prices_file_tree"></field>
+    </record>
+
+	<menuitem id="menu_product_price_files"
+		name="Archivos de Precios" 
+		action="action_product_prices_file" 
+		parent="sale.product_menu_catalog"
+		sequence="110" />
+
+</odoo>

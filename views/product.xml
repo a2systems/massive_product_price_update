@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_product_prices_tree" model="ir.ui.view">
+        <field name="name">view.product.prices.tree</field>
+        <field name="model">product.product</field>
+        <field name="arch" type="xml">
+            <tree string="Actualización de productos" editable="bottom">
+                <field name="default_code" readonly="1"/>
+                <field name="name" readonly="1"/>
+                <field name="categ_id" readonly="1"/>
+                <field name="list_price"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_product_prices">
+        <field name="name">Precios</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+	<field name="view_mode">tree,form</field>
+	<field name="view_id" ref="view_product_prices_tree"></field>
+    </record>
+
+	<menuitem id="menu_product_prices"
+		name="Precios" 
+		action="action_product_prices" 
+		parent="sale.product_menu_catalog"
+		sequence="100" />
+
+</odoo>
